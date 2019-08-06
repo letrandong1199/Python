@@ -57,7 +57,8 @@ def Hunreds(num):
     return result
 #Ham
 def Read_Number(count,num):
-    if count==1:
+    result=[]
+    if (count==1):
         return Ones(num)
     elif count==2:
         return Dezons(num)
@@ -65,17 +66,26 @@ def Read_Number(count,num):
         return Hunreds(num)
     else:
         raise TypeError
-
 #Hàm đọc số bất kỳ
 #Input:Interger
 #Output:List
-def integer_to_vietnamese_numeral(num):    
+def integer_to_vietnamese_numeral(num):
+    if num==0:
+        return Ones(num)    
     divisor=10**9
     result=[]
     i=0
     while num!=0:
         if(num//divisor!=0):
             count=Local_length(num//divisor)
+            if len(result)!=0:
+                if count==2:
+                    result.append('không')
+                    result.append('trăm')
+                if count==1:
+                    result.append('không')
+                    result.append('trăm')
+                    result.append('linh')
             result+=Read_Number(count,num//divisor)
             result.append(digits[i])
             num%=divisor
